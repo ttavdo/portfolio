@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-void: #050508;
+  --bg-surface: #0d0d1a;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --neon-cyan: #00f5ff;
+  --neon-violet: #7c3aed;
+  --neon-glow: rgba(0, 245, 255, 0.15);
+  --text-primary: #f0f4ff;
+  --text-secondary: #8892b0;
+  --text-accent: #00f5ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 245, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 245, 255, 0.1);
+  }
+
+  .neon-text {
+    color: var(--neon-cyan);
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .btn-neon {
+    @apply px-6 py-3 rounded-lg font-display font-semibold text-void bg-neon-cyan transition-all duration-300;
+  }
+
+  .btn-neon:hover {
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.4), 0 0 40px rgba(0, 245, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn-glass {
+    @apply px-6 py-3 rounded-lg font-display font-semibold text-text-primary border border-glass-border bg-glass-bg backdrop-blur-md transition-all duration-300;
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+  }
+
+  .btn-glass:hover {
+    border-color: rgba(0, 245, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-bold text-text-primary mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-text-secondary text-lg mb-12 max-w-2xl;
+  }
+
+  .typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: var(--neon-cyan);
+    margin-left: 2px;
+  }
+
+  .skill-bar-fill {
+    @apply h-full rounded-full bg-gradient-to-r from-neon-cyan to-neon-violet;
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+  }
+
+  .badge-pill {
+    @apply px-3 py-1 rounded-full text-xs font-mono border border-glass-border bg-glass-bg text-neon-cyan;
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+  }
+
+  .nav-link {
+    @apply text-text-secondary hover:text-neon-cyan transition-colors duration-300 font-display text-sm tracking-wide;
+  }
+
+  .input-glass {
+    @apply w-full px-4 py-3 rounded-lg font-body text-text-primary placeholder-text-secondary outline-none transition-all duration-300;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .input-glass:focus {
+    border-color: rgba(0, 245, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
+  }
+
+  .input-error {
+    border-color: rgba(239, 68, 68, 0.6) !important;
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.3), 0 0 20px rgba(0, 245, 255, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(0, 245, 255, 0.6), 0 0 40px rgba(0, 245, 255, 0.3);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 245, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 245, 255, 0.4);
+}
