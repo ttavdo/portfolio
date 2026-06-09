@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useLanguage } from '../hooks/useLanguage'
+import logoHeader from '../assets/logo-header.webp'
 
 const navLinks = [
   { key: 'about' as const, href: '#about' },
@@ -37,10 +38,12 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group" aria-label="Home">
-          <div className="w-9 h-9 rounded-lg border border-neon-cyan/30 flex items-center justify-center font-display font-bold text-neon-cyan text-sm group-hover:shadow-neon transition-shadow">
-            TT
-          </div>
+        <a href="#" className="flex items-center group" aria-label="Home">
+          <img
+            src={logoHeader}
+            alt="Temo Tavdgiridze — Creative Developer"
+            className="h-10 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,245,255,0.4)] transition-all"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-8">

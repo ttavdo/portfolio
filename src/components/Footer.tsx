@@ -2,6 +2,7 @@ import { useRef, useCallback } from 'react'
 import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, InstagramIcon, FacebookIcon } from './icons'
 import { useLanguage } from '../hooks/useLanguage'
+import logoIcon from '../assets/logo-icon.webp'
 
 const navLinks = [
   { key: 'about' as const, href: '#about' },
@@ -55,10 +56,10 @@ export default function Footer() {
             <div ref={burstRef} className="relative">
               <button
                 onClick={triggerBurst}
-                className="w-10 h-10 rounded-lg border border-neon-cyan/30 flex items-center justify-center font-display font-bold text-neon-cyan text-sm hover:shadow-neon transition-shadow cursor-pointer"
+                className="w-12 h-12 rounded-lg overflow-hidden hover:shadow-neon transition-shadow cursor-pointer"
                 aria-label="TT logo easter egg"
               >
-                TT
+                <img src={logoIcon} alt="TT logo" className="w-full h-full object-cover" />
               </button>
             </div>
             <div>
