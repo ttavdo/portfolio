@@ -111,6 +111,8 @@ export const translations = {
       emailError: 'გთხოვთ, შეიყვანოთ სწორი ელ-ფოსტა',
       messageError: 'შეტყობინება მინიმუმ 10 სიმბოლო',
       success: 'შეტყობინება გაიგზავნა!',
+      error: 'გაგზავნა ვერ მოხერხდა, სცადეთ თავიდან',
+      sending: 'იგზავნება...',
       location: 'ბათუმი, საქართველო',
     },
     footer: {
@@ -228,6 +230,8 @@ export const translations = {
       emailError: 'Please enter a valid email',
       messageError: 'Message must be at least 10 characters',
       success: 'Message sent successfully!',
+      error: 'Failed to send, please try again',
+      sending: 'Sending...',
       location: 'Batumi, Georgia',
     },
     footer: {

@@ -16,7 +16,7 @@ export default function Contact() {
   const { t } = useLanguage()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [errors, setErrors] = useState<FormErrors>({})
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
   const validate = (): FormErrors => {
     const errs: FormErrors = {}
@@ -26,14 +26,31 @@ export default function Contact() {
     return errs
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const errs = validate()
     setErrors(errs)
-    if (Object.keys(errs).length === 0) {
-      setSubmitted(true)
+    if (Object.keys(errs).length > 0) return
+
+    setStatus('sending')
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }).toString(),
+      })
+      if (!res.ok) throw new Error('Submit failed')
+      setStatus('success')
       setForm({ name: '', email: '', message: '' })
-      setTimeout(() => setSubmitted(false), 4000)
+      setTimeout(() => setStatus('idle'), 5000)
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 5000)
     }
   }
 
@@ -78,10 +95,19 @@ export default function Contact() {
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="glass-card p-8 space-y-5" noValidate>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          onSubmit={handleSubmit}
+          className="glass-card p-8 space-y-5"
+          noValidate
+        >
+          <input type="hidden" name="form-name" value="contact" />
           <div>
             <input
               type="text"
+              name="name"
               placeholder={t.contact.name}
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -94,6 +120,7 @@ export default function Contact() {
           <div>
             <input
               type="email"
+              name="email"
               placeholder={t.contact.email}
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -105,6 +132,7 @@ export default function Contact() {
 
           <div>
             <textarea
+              name="message"
               placeholder={t.contact.message}
               rows={5}
               value={form.message}
@@ -115,7 +143,7 @@ export default function Contact() {
             {errors.message && <p className="text-red-400 text-xs mt-1 font-mono">{errors.message}</p>}
           </div>
 
-          {submitted && (
+          {status === 'success' && (
             <motion.p
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -124,9 +152,20 @@ export default function Contact() {
               {t.contact.success}
             </motion.p>
           )}
+          {status === 'error' && (
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-red-400 text-sm font-mono"
+            >
+              {t.contact.error}
+            </motion.p>
+          )}
 
           <MagneticButton type="submit">
-            <span className="btn-neon w-full text-center block">{t.contact.send}</span>
+            <span className={`btn-neon w-full text-center block ${status === 'sending' ? 'opacity-60 pointer-events-none' : ''}`}>
+              {status === 'sending' ? t.contact.sending : t.contact.send}
+            </span>
           </MagneticButton>
         </form>
       </div>
