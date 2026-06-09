@@ -27,15 +27,15 @@ export default function Projects() {
               className="h-48 relative overflow-hidden"
               style={{ background: `linear-gradient(135deg, ${project.color}10, ${project.color}05)` }}
             >
+              <img
+                src={project.image}
+                alt={project.title[lang]}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              />
               <div
-                className="absolute inset-0 flex items-center justify-center font-display text-2xl font-bold opacity-20 group-hover:scale-110 transition-transform duration-500"
-                style={{ color: project.color }}
-              >
-                {project.title[lang]}
-              </div>
-              <div
-                className="absolute inset-0 border-b opacity-30"
-                style={{ borderColor: project.color }}
+                className="absolute inset-0 border-b-2 opacity-40 pointer-events-none"
+                style={{ borderColor: project.color, boxShadow: `inset 0 -20px 30px -20px ${project.color}40` }}
               />
             </div>
 

@@ -4,6 +4,7 @@ export interface Project {
   description: { ka: string; en: string }
   tech: string[]
   color: string
+  image: string
   demoUrl: string
   githubUrl: string
 }
@@ -11,6 +12,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'merge-stars',
+    image: '/projects/merge-stars.webp',
     title: { ka: 'MERGE STARS', en: 'MERGE STARS' },
     description: {
       ka: 'E-commerce სამკაულის პლატფორმა React 18-ით, NestJS-ით და Docker-ით',
@@ -23,6 +25,7 @@ export const projects: Project[] = [
   },
   {
     id: 'wedding',
+    image: '/projects/wedding.webp',
     title: { ka: 'ქორწილის მოწვევა', en: 'Wedding Invitation App' },
     description: {
       ka: 'ონლაინ ქორწილის მოწვევა ინტერაქტიული ისტორიით, გალერეით და RSVP ფორმით',
@@ -35,6 +38,7 @@ export const projects: Project[] = [
   },
   {
     id: 'port',
+    image: '/projects/port.webp',
     title: { ka: 'Port Disbursement Calculator', en: 'Port Disbursement Calculator' },
     description: {
       ka: 'საპორტო ხარჯების კალკულატორი — PDA/FDA პროფორმა ბათუმის ტანკერის მოდელით',
@@ -47,6 +51,7 @@ export const projects: Project[] = [
   },
   {
     id: 'cottages',
+    image: '/projects/cottages.webp',
     title: { ka: 'Cottages', en: 'Cottages' },
     description: {
       ka: 'კოტეჯების დაჯავშნისა და პრეზენტაციის პლატფორმა',
@@ -59,6 +64,7 @@ export const projects: Project[] = [
   },
   {
     id: 'plaza',
+    image: '/projects/plaza.webp',
     title: { ka: 'Plaza', en: 'Plaza' },
     description: {
       ka: 'სავაჭრო პლატფორმის ვებ აპლიკაცია თანამედროვე UI-ით',
