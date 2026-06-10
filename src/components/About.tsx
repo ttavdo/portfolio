@@ -29,7 +29,7 @@ export default function About() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="glass-card w-64 h-64 flex items-center justify-center">
                   <pre className="font-mono text-neon-cyan text-sm leading-relaxed select-none">
-{`<Temo />
+{`<Temo>
   role="dev"
   stack={[
     "React",
@@ -37,7 +37,7 @@ export default function About() {
     "TypeScript"
   ]}
   location="Batumi"
-/>`}
+</Temo>`}
                   </pre>
                 </div>
               </div>
