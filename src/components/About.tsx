@@ -17,13 +17,18 @@ export default function About() {
           <p className="text-text-secondary text-lg leading-relaxed">{t.about.text}</p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="glass-card inline-block p-6 mt-8"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex items-center justify-center mt-12"
           >
-            <pre className="font-mono text-neon-cyan text-sm leading-relaxed select-none">
+            <div className="relative w-80 h-80">
+              <div className="absolute inset-0 rounded-2xl border border-neon-cyan/20 rotate-6 animate-pulse" />
+              <div className="absolute inset-4 rounded-2xl border border-neon-violet/20 -rotate-3" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="glass-card w-64 h-64 flex items-center justify-center">
+                  <pre className="font-mono text-neon-cyan text-sm leading-relaxed select-none">
 {`<Temo />
   role="dev"
   stack={[
@@ -33,7 +38,16 @@ export default function About() {
   ]}
   location="Batumi"
 />`}
-            </pre>
+                  </pre>
+                </div>
+              </div>
+              <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center">
+                <span className="text-neon-cyan font-mono text-xs">{'{}'}</span>
+              </div>
+              <div className="absolute -bottom-4 -left-4 w-12 h-12 rounded-full bg-neon-violet/10 border border-neon-violet/30 flex items-center justify-center">
+                <span className="text-neon-violet font-mono text-xs">{'</>'}</span>
+              </div>
+            </div>
           </motion.div>
         </div>
 
