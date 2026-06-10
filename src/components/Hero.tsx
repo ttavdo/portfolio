@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../hooks/useLanguage'
 import MagneticButton from './MagneticButton'
+import temoPhoto from '../assets/temo.webp'
 
 const container = {
   hidden: { opacity: 0 },
@@ -66,18 +67,12 @@ export default function Hero() {
             <div className="absolute inset-0 rounded-2xl border border-neon-cyan/20 rotate-6 animate-pulse" />
             <div className="absolute inset-4 rounded-2xl border border-neon-violet/20 -rotate-3" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="glass-card w-64 h-64 flex items-center justify-center">
-                <pre className="font-mono text-neon-cyan text-sm leading-relaxed select-none">
-{`<Temo />
-  role="dev"
-  stack={[
-    "React",
-    "NestJS",
-    "TypeScript"
-  ]}
-  location="Batumi"
-/>`}
-                </pre>
+              <div className="glass-card w-72 h-72 overflow-hidden p-0">
+                <img
+                  src={temoPhoto}
+                  alt="Temo Tavdgiridze"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center">
